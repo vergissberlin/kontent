@@ -33,7 +33,7 @@ services:
       - ./.env:/opt/app/.env
     networks:
       - default
-      - strapi
+      - kontent
     depends_on:
       - db
 
@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
     volumes:
       #- ./data/db:/var/lib/postgresql/data
-      - kontent-db:/var/lib/mysq
+      - kontent-db:/var/lib/postgresql/pgdata
     env_file: .env
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
@@ -51,11 +51,11 @@ services:
       POSTGRES_DB: ${DATABASE_NAME}
     networks:
       - default
-      - strapi
+      - kontent
 
 networks:
-  strapi:
-    name: Strapi
+  kontent:
+    name:  ${COMPOSE_PROJECT_NAME}-network
     driver: bridge
   default:
     external:
