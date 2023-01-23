@@ -10,9 +10,9 @@ on:
       version:
         description: Build Docker image
 
-permissions:
-  contents: read
-  pull-requests: write
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
