@@ -2,8 +2,8 @@ version: "3"
 services:
   app:
     container_name: ${COMPOSE_PROJECT_NAME}-app
-    build: .
-    image: kontent:latest
+    #build: .
+    image: ghcr.io/vergissberlin/kontent:main
     restart: unless-stopped
     labels:
       - com.centurylinklabs.watchtower.enable=true
