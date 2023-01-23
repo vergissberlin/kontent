@@ -32,6 +32,7 @@ services:
       - ./yarn.lock:/opt/yarn.lock
       - ./.env:/opt/app/.env
     networks:
+      - default
       - strapi
     depends_on:
       - db
@@ -48,7 +49,8 @@ services:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
       POSTGRES_DB: ${DATABASE_NAME}
     networks:
-      - strapi
+      - default
+      - strap
 
 networks:
   strapi:
