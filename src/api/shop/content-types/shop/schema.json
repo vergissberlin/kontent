@@ -21,6 +21,13 @@
       "maxLength": 1024,
       "minLength": 12
     },
+    "Images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    },
     "Status": {
       "type": "enumeration",
       "enum": [
@@ -30,13 +37,6 @@
       ],
       "default": "Draft",
       "required": true
-    },
-    "Images": {
-      "allowedTypes": [
-        "images"
-      ],
-      "type": "media",
-      "multiple": true
     },
     "products": {
       "type": "relation",

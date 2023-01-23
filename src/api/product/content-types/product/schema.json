@@ -19,11 +19,10 @@
       "type": "string",
       "required": true
     },
-    "shop": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::shop.shop",
-      "inversedBy": "products"
+    "Description": {
+      "type": "richtext",
+      "maxLength": 1024,
+      "minLength": 12
     },
     "Images": {
       "allowedTypes": [
@@ -31,11 +30,6 @@
       ],
       "type": "media",
       "multiple": true
-    },
-    "Description": {
-      "type": "richtext",
-      "maxLength": 1024,
-      "minLength": 12
     },
     "Status": {
       "type": "enumeration",
@@ -46,6 +40,12 @@
       ],
       "default": "Draft",
       "required": true
+    },
+    "shop": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop.shop",
+      "inversedBy": "products"
     }
   }
 }
