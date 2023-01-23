@@ -43,7 +43,7 @@ services:
     restart: unless-stopped
     volumes:
       #- ./data/db:/var/lib/postgresql/data
-      - ${COMPOSE_PROJECT_NAME}-db:/var/lib/mysq
+      - kontent-db:/var/lib/mysq
     env_file: .env
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
@@ -62,5 +62,5 @@ networks:
       name: www
 
 volumes:
-  ${COMPOSE_PROJECT_NAME}-db:
+  kontent-db:
     name: ${COMPOSE_PROJECT_NAME}-db
