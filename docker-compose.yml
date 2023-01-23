@@ -42,7 +42,8 @@ services:
     image: postgres
     restart: unless-stopped
     volumes:
-      - ./data/db:/var/lib/postgresql/data
+      #- ./data/db:/var/lib/postgresql/data
+      - ${COMPOSE_PROJECT_NAME}-db:/var/lib/mysq
     env_file: .env
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}
@@ -59,3 +60,7 @@ networks:
   default:
     external:
       name: www
+
+volumes:
+  ${COMPOSE_PROJECT_NAME}-db:
+    name: ${COMPOSE_PROJECT_NAME}-db
