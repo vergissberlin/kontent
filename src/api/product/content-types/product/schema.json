@@ -1,35 +1,29 @@
 {
   "kind": "collectionType",
-  "collectionName": "shops",
+  "collectionName": "products",
   "info": {
-    "singularName": "shop",
-    "pluralName": "shops",
-    "displayName": "Shop"
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product"
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
+    "uid": {
+      "type": "uid",
+      "required": true
+    },
     "Name": {
       "type": "string",
       "required": true
     },
-    "Description": {
-      "type": "richtext",
-      "required": true,
-      "maxLength": 1024,
-      "minLength": 12
-    },
-    "Status": {
-      "type": "enumeration",
-      "enum": [
-        "Draft",
-        "Published",
-        "Closed"
-      ],
-      "default": "Draft",
-      "required": true
+    "shop": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::shop.shop",
+      "inversedBy": "products"
     },
     "Images": {
       "allowedTypes": [
@@ -38,11 +32,20 @@
       "type": "media",
       "multiple": true
     },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "shop"
+    "Description": {
+      "type": "richtext",
+      "maxLength": 1024,
+      "minLength": 12
+    },
+    "Status": {
+      "type": "enumeration",
+      "enum": [
+        "Draft",
+        "Public",
+        "Closed"
+      ],
+      "default": "Draft",
+      "required": true
     }
   }
 }
