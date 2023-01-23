@@ -1,10 +1,19 @@
 version: "3"
 services:
   app:
-    container_name: strapi-app
+    container_name: ${COMPOSE_PROJECT_NAME}-app
     build: .
-    image: kontentt:latest
+    image: kontent:latest
     restart: unless-stopped
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - traefik.enable=true
+      - traefik.docker.network=www
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(${DOMAINS})
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.entrypoints=https
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.tls=true
+      - traefik.http.routers.${COMPOSE_PROJECT_NAME}.tls.certresolver=letsencrypt
+      - traefik.http.services.${COMPOSE_PROJECT_NAME}.loadbalancer.server.port=${PORT}
     env_file: .env
     environment:
       DATABASE_HOST: ${DATABASE_HOST}
@@ -20,7 +29,7 @@ services:
       - ./config:/opt/app/config
       - ./src:/opt/app/src
       - ./package.json:/opt/package.json
-      - ./yarn.lock:/opt/yarn.lock # Replace with package-lock.json if using npm
+      - ./yarn.lock:/opt/yarn.lock
       - ./.env:/opt/app/.env
     ports:
       - 1337:1337
@@ -30,7 +39,7 @@ services:
       - db
 
   db:
-    container_name: strapi-db
+    container_name: ${COMPOSE_PROJECT_NAME}-db
     image: postgres
     restart: unless-stopped
     volumes:

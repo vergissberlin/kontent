@@ -4,7 +4,7 @@
 !/.env.example
 !/.editorconfig
 !/.eslintignore
-!/.eslintrs
+!/.eslintrc
 !/.gitignore
 
 !/config/
@@ -12,10 +12,9 @@
 !/public
 !/src
 
-
 !/docker-compose.yml
 !/Dockerfile
-!/favicon.ico
+!/favicon.png
 !/package.json
 !/README.md
 !/yarn.lock
